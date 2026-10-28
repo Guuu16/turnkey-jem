@@ -270,6 +270,33 @@ Push-Location C
 Pop-Location
 ```
 
+### macOS Terminal
+
+macOS needs Python 3.11+ and Node.js 20.9+ with npm.
+
+Run these commands from the repository root:
+
+```bash
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
+
+cd A
+../.venv/bin/python -m pytest -q
+../.venv/bin/python -m ruff check src tests
+../.venv/bin/python -m ruff format --check src tests
+cd ..
+
+cd B
+../.venv/bin/python -m pytest -q
+../.venv/bin/python -m ruff check src tests
+../.venv/bin/python -m ruff format --check src tests
+cd ..
+
+cd C
+../.venv/bin/python -m pytest -q
+cd ..
+```
+
 ## Run the Full-Stack App
 
 Start the API first (it creates and seeds the SQLite database on first run):
@@ -305,6 +332,36 @@ npm run typecheck
 npm test
 npm run build
 Pop-Location
+```
+
+On macOS, use two Terminal windows. Start the API in the first:
+
+```bash
+cd app/backend
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements-dev.txt
+.venv/bin/python -m uvicorn app.main:app --host 127.0.0.1 --port 8000
+```
+
+Start the frontend in the second:
+
+```bash
+cd app/frontend
+npm install
+npm run dev
+```
+
+To run the full-stack checks on macOS:
+
+```bash
+cd app/backend
+.venv/bin/python -m pytest -q
+.venv/bin/python -m ruff check app tests
+.venv/bin/python -m ruff format --check app tests
+cd ../frontend
+npm test
+npm run typecheck
+npm run build
 ```
 
 The backend suite contains `33` tests and the frontend suite contains `15`.

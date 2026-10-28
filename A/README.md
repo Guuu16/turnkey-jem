@@ -104,3 +104,12 @@ O2 2
 ..\.venv\Scripts\python.exe -m ruff format --check src tests
 ..\.venv\Scripts\python.exe src\inventory_ledger.py < input.txt
 ```
+
+macOS Terminal:
+
+```bash
+../.venv/bin/python -m pytest -q
+../.venv/bin/python -m ruff check src tests
+../.venv/bin/python -m ruff format --check src tests
+../.venv/bin/python src/inventory_ledger.py < input.txt
+```

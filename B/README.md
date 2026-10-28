@@ -111,3 +111,12 @@ CN 7
 ..\.venv\Scripts\python.exe -m ruff format --check src tests
 ..\.venv\Scripts\python.exe src\fulfilment.py < input.txt
 ```
+
+macOS Terminal:
+
+```bash
+../.venv/bin/python -m pytest -q
+../.venv/bin/python -m ruff check src tests
+../.venv/bin/python -m ruff format --check src tests
+../.venv/bin/python src/fulfilment.py < input.txt
+```

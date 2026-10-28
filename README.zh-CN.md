@@ -275,6 +275,33 @@ Push-Location C
 Pop-Location
 ```
 
+### macOS Terminal
+
+macOS 需要 Python 3.11+，以及带 npm 的 Node.js 20.9+。
+
+在仓库根目录运行：
+
+```bash
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
+
+cd A
+../.venv/bin/python -m pytest -q
+../.venv/bin/python -m ruff check src tests
+../.venv/bin/python -m ruff format --check src tests
+cd ..
+
+cd B
+../.venv/bin/python -m pytest -q
+../.venv/bin/python -m ruff check src tests
+../.venv/bin/python -m ruff format --check src tests
+cd ..
+
+cd C
+../.venv/bin/python -m pytest -q
+cd ..
+```
+
 ## 运行全栈应用
 
 先启动 API（首次运行会创建并灌入 SQLite 数据）：
@@ -310,6 +337,36 @@ npm run typecheck
 npm test
 npm run build
 Pop-Location
+```
+
+在 macOS 上打开两个 Terminal 窗口。第一个窗口启动 API：
+
+```bash
+cd app/backend
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements-dev.txt
+.venv/bin/python -m uvicorn app.main:app --host 127.0.0.1 --port 8000
+```
+
+第二个窗口启动前端：
+
+```bash
+cd app/frontend
+npm install
+npm run dev
+```
+
+在 macOS 上运行全栈检查：
+
+```bash
+cd app/backend
+.venv/bin/python -m pytest -q
+.venv/bin/python -m ruff check app tests
+.venv/bin/python -m ruff format --check app tests
+cd ../frontend
+npm test
+npm run typecheck
+npm run build
 ```
 
 后端测试套件包含 `33` 个测试，前端测试套件包含 `15` 个测试。前端已在 `375×812` 和 `1280×800` 视口完成浏览器验收：移动端为清晰的单列布局，桌面端为双列布局，均无水平溢出。截图见 [375×812](app/frontend/docs/responsive-375x812.png) 和 [1280×800](app/frontend/docs/responsive-1280x800.png)。API 契约、错误码、幂等和防超卖设计见 [app/README.md](app/README.md)。

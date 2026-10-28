@@ -21,6 +21,15 @@ python -m venv .venv
 .\.venv\Scripts\python.exe -m uvicorn app.main:app --host 127.0.0.1 --port 8000
 ```
 
+macOS Terminal:
+
+```bash
+cd app/backend
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements-dev.txt
+.venv/bin/python -m uvicorn app.main:app --host 127.0.0.1 --port 8000
+```
+
 The database is created at `app/backend/data/shop.db` and seeded on first start.
 Delete that file to reset stock and cart state.
 
@@ -32,9 +41,9 @@ Delete that file to reset stock and cart state.
 Interactive OpenAPI docs: <http://127.0.0.1:8000/docs>. They describe the
 schema; this README explains the behaviour and the examples.
 
-### Frontend (port 3000)
+### Frontend (port 3000, Windows and macOS; Node.js 20.9+)
 
-```powershell
+```bash
 cd app/frontend
 npm install
 npm run dev
@@ -67,6 +76,19 @@ npm test                                            # 15 passed
 npm run typecheck
 npm run build
 Pop-Location
+```
+
+macOS Terminal:
+
+```bash
+cd app/backend
+.venv/bin/python -m pytest -q
+.venv/bin/python -m ruff check app tests
+.venv/bin/python -m ruff format --check app tests
+cd ../frontend
+npm test
+npm run typecheck
+npm run build
 ```
 
 ---
