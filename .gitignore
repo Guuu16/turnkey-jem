@@ -1,0 +1,24 @@
+# Python virtual environments and caches
+**/.venv/
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+pytest-of-*/
+
+# Application runtime data
+app/backend/data/
+*.db
+*.db-*
+*.log
+
+# Node.js / Next.js
+**/node_modules/
+**/.next/
+**/out/
+*.tsbuildinfo
+
+# Local environment files
+.env
+.env.*
+!.env.example
